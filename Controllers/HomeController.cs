@@ -26,5 +26,11 @@ namespace CentricTeam4.Controllers
 
             return View();
         }
+
+        public ActionResult CoreValues()
+        {
+            return View();
+
+        }
     }
 }
