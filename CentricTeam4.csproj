@@ -170,6 +170,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\userDataController.cs" />
+    <Compile Include="DAL\MIS4200Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -237,9 +239,15 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\CoreValues.cshtml" />
+    <Content Include="Views\userData\Create.cshtml" />
+    <Content Include="Views\userData\Delete.cshtml" />
+    <Content Include="Views\userData\Details.cshtml" />
+    <Content Include="Views\userData\Edit.cshtml" />
+    <Content Include="Views\userData\Index.cshtml" />
+    <Content Include="Views\userData\duplicateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

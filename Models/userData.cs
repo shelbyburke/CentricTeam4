@@ -27,9 +27,7 @@ namespace CentricTeam4.Models
         public string firstName { get; set; }
 
         [Display(Name = "Primary Phone")]
-        [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^(\(\d{3}\) |\d{3}-\d{4}$",
-               ErrorMessage ="Phone Numbers must be in the format (xxx) xxx-xxxx or xxx-xxx-xxxx")]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Current Position")]
