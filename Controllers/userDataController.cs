@@ -16,13 +16,13 @@ namespace CentricTeam4.Controllers
     {
         private MIS4200Context db = new MIS4200Context();
 
-        // GET: userData
+        // GET: userDatas
         public ActionResult Index()
         {
             return View(db.userData.ToList());
         }
 
-        // GET: userData/Details/5
+        // GET: userDatas/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -37,13 +37,13 @@ namespace CentricTeam4.Controllers
             return View(userData);
         }
 
-        // GET: userData/Create
+        // GET: userDatas/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: userData/Create
+        // POST: userDatas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -65,13 +65,14 @@ namespace CentricTeam4.Controllers
                 {
                     return View("duplicateUser");
                 }
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(userData);
         }
 
-        // GET: userData/Edit/5
+        // GET: userDatas/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -86,7 +87,7 @@ namespace CentricTeam4.Controllers
             return View(userData);
         }
 
-        // POST: userData/Edit/5
+        // POST: userDatas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -102,7 +103,7 @@ namespace CentricTeam4.Controllers
             return View(userData);
         }
 
-        // GET: userData/Delete/5
+        // GET: userDatas/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -117,7 +118,7 @@ namespace CentricTeam4.Controllers
             return View(userData);
         }
 
-        // POST: userData/Delete/5
+        // POST: userDatas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
