@@ -28,6 +28,8 @@ namespace CentricTeam4.Models
 
         [Display(Name = "Primary Phone")]
         [Phone]
+        [RegularExpression(@"^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$",
+            ErrorMessage = "Phone numbers must be in the format (xxx) xxx-xxxx or xxx-xxx-xxxx")]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Current Position")]
