@@ -26,7 +26,27 @@ namespace CentricTeam4.Models
         [Display(Name = "First Name")]
         public string firstName { get; set; }
 
-        public enum Location
+        [Display(Name = "Primary Phone")]
+        [Phone]
+        [RegularExpression(@"^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$",
+            ErrorMessage = "Phone numbers must be in the format (xxx) xxx-xxxx or xxx-xxx-xxxx")]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "Current Position")]
+        public string Position { get; set; }
+        public LocationList Location { get; set; }
+
+        [Display(Name = "Current Business Unit")]
+        public string BusinessUnit { get; set; }
+
+        [Display(Name = "Hire Date")]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime hireDate { get; set; }
+
+        [Display(Name = "Bio")]
+        public string bio { get; set; }
+
+        public enum LocationList
         {
             Boston = 1,
             Charlotte = 2,
@@ -40,26 +60,9 @@ namespace CentricTeam4.Models
             Miami = 10,
             Seattle = 11,
             StLouis = 12,
-            Tampa = 13
-        }
-
-        [Display(Name = "Primary Phone")]
-        [Phone]
-        [RegularExpression(@"^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$",
-            ErrorMessage = "Phone numbers must be in the format (xxx) xxx-xxxx or xxx-xxx-xxxx")]
-        public string PhoneNumber { get; set; }
-
-        [Display(Name = "Current Position")]
-        public string Position { get; set; }
-
-        [Display(Name = "Hire Date")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime hireDate { get; set; }
-
-        [Display(Name = "Bio")]
-        public string bio { get; set; }
-
+            Tampa = 13,
        
+        }
 
 
     }

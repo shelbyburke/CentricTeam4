@@ -47,7 +47,7 @@ namespace CentricTeam4.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Email,lastName,firstName,PhoneNumber,Position,hireDate,bio")] userData userData)
+        public ActionResult Create([Bind(Include = "ID,Email,lastName,firstName,PhoneNumber,Position,Location,BusinessUnit,hireDate,bio")] userData userData)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace CentricTeam4.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Email,lastName,firstName,PhoneNumber,Position,hireDate,bio")] userData userData)
+        public ActionResult Edit([Bind(Include = "ID,Email,lastName,firstName,PhoneNumber,Position,Location,BusinessUnit,hireDate,bio")] userData userData)
         {
             if (ModelState.IsValid)
             {
