@@ -26,6 +26,23 @@ namespace CentricTeam4.Models
         [Display(Name = "First Name")]
         public string firstName { get; set; }
 
+        public enum Location
+        {
+            Boston = 1,
+            Charlotte = 2,
+            Chicago = 3,
+            Cincinnati = 4,
+            Cleveland = 5,
+            Columbus = 6,
+            India = 7,
+            Indianapolis = 8,
+            Louisville = 9,
+            Miami = 10,
+            Seattle = 11,
+            StLouis = 12,
+            Tampa = 13
+        }
+
         [Display(Name = "Primary Phone")]
         [Phone]
         [RegularExpression(@"^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$",
