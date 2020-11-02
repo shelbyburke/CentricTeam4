@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CentricTeam4.DAL;
 using CentricTeam4.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CentricTeam4.Controllers
 {
@@ -18,16 +19,35 @@ namespace CentricTeam4.Controllers
         // GET: userData
         public ActionResult Index(string searchString)
         {
-            var testusers = from u in db.userData select u;
-            if (!String.IsNullOrEmpty(searchString))
+
             {
-                testusers = testusers.Where(u =>
-                u.lastName.Contains(searchString)
-                    || u.firstName.Contains(searchString));
-                // if here, users were found so view them
-                return View(testusers.ToList());
+                if (User.Identity.IsAuthenticated)
+                {
+                    return View(db.userData.ToList());
+                }
+                else
+                {
+                    return View("NotAuthenticated");
+                }
+
             }
-            return View(db.userData.ToList());
+
+            {
+                {
+                    var testusers = from u in db.userData select u;
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        testusers = testusers.Where(u =>
+                        u.lastName.Contains(searchString)
+                            || u.firstName.Contains(searchString));
+                        // if here, users were found so view them
+                        return View(testusers.ToList());
+                    }
+                    return View(db.userData.ToList());
+
+                }
+            }
+
     }
 
         // GET: userData/Details/5
@@ -46,6 +66,7 @@ namespace CentricTeam4.Controllers
         }
 
         // GET: userData/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -60,10 +81,21 @@ namespace CentricTeam4.Controllers
         {
             if (ModelState.IsValid)
             {
-                userData.ID = Guid.NewGuid();
+                //    userData.ID = Guid.NewGuid(); // original new GUID
+                Guid memberID; // created a variable to hold the GUID
+                Guid.TryParse(User.Identity.GetUserId(), out memberID);
+                userData.ID = memberID;
                 db.userData.Add(userData);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // db.SaveChanges will throw an Exception if the user already exists
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    return View("DuplicateUser");
+                }
             }
 
             return View(userData);
@@ -81,7 +113,16 @@ namespace CentricTeam4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userData);
+            Guid memberID;
+            Guid.TryParse(User.Identity.GetUserId(), out memberID);
+            if (userData.ID == memberID)
+            {
+                return View(userData);
+            }
+            else
+            {
+                return View("NotAuthenticated");
+            }
         }
 
         // POST: userData/Edit/5
