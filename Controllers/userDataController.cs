@@ -23,17 +23,6 @@ namespace CentricTeam4.Controllers
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    return View(db.userData.ToList());
-                }
-                else
-                {
-                    return View("NotAuthenticated");
-                }
-
-            }
-
-            {
-                {
                     var testusers = from u in db.userData select u;
                     if (!String.IsNullOrEmpty(searchString))
                     {
@@ -44,11 +33,31 @@ namespace CentricTeam4.Controllers
                         return View(testusers.ToList());
                     }
                     return View(db.userData.ToList());
-
                 }
+                else
+                {
+                    return View("NotAuthenticated");
+                }
+
             }
 
-    }
+            //{
+            //    {
+            //        var testusers = from u in db.userData select u;
+            //        if (!String.IsNullOrEmpty(searchString))
+            //        {
+            //            testusers = testusers.Where(u =>
+            //            u.lastName.Contains(searchString)
+            //                || u.firstName.Contains(searchString));
+            //            // if here, users were found so view them
+            //            return View(testusers.ToList());
+            //        }
+            //        return View(db.userData.ToList());
+
+            //    }
+            //}
+
+        }
 
         // GET: userData/Details/5
         public ActionResult Details(Guid? id)

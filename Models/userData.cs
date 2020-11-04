@@ -46,6 +46,8 @@ namespace CentricTeam4.Models
         [Display(Name = "Bio")]
         public string bio { get; set; }
 
+
+
         public enum LocationList
         {
             Boston = 1,
