@@ -14,5 +14,7 @@ namespace CentricTeam4.DAL
 
         }
         public DbSet<userData> userData { get; set; }
+
+        public System.Data.Entity.DbSet<CentricTeam4.Models.TestCoreValues> TestCoreValues { get; set; }
     }
 }

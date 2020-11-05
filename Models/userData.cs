@@ -26,6 +26,15 @@ namespace CentricTeam4.Models
         [Display(Name = "First Name")]
         public string firstName { get; set; }
 
+        public string fullName
+        {
+            get
+            {
+
+                return lastName + ", " + firstName;
+            }
+        }
+
         [Display(Name = "Primary Phone")]
         [Phone]
         [RegularExpression(@"^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$",

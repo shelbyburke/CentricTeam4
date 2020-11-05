@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TestCoreValuesController.cs" />
     <Compile Include="Controllers\userDataController.cs" />
     <Compile Include="DAL\MIS4200Context.cs" />
     <Compile Include="Global.asax.cs">
@@ -248,6 +249,11 @@
     <Content Include="Views\userData\Index.cshtml" />
     <Content Include="Views\userData\DuplicateUser.cshtml" />
     <Content Include="Views\userData\NotAuthenticated.cshtml" />
+    <Content Include="Views\TestCoreValues\Create.cshtml" />
+    <Content Include="Views\TestCoreValues\Delete.cshtml" />
+    <Content Include="Views\TestCoreValues\Details.cshtml" />
+    <Content Include="Views\TestCoreValues\Edit.cshtml" />
+    <Content Include="Views\TestCoreValues\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\NewFolder1\" />
