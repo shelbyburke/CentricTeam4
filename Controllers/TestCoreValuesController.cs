@@ -37,6 +37,7 @@ namespace CentricTeam4.Controllers
         }
 
         // GET: TestCoreValues/Create
+        [Authorize]
         public ActionResult Create()
         {
             var recognizor = db.userData.OrderBy(c => c.lastName).ThenBy(c => c.firstName);

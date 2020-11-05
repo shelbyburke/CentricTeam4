@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,11 +11,16 @@ namespace CentricTeam4.Models
     {
         public int ID { get; set; }
         [Display(Name = "Core value recognized")]
+        [Required]
         public CoreValue award { get; set; }
         [Display(Name = "ID of Person giving the recognition")]
         public Guid recognizor { get; set; }
         [Display(Name = "ID of Person receiving the recognition")]
+        [ForeignKey("recognizor")]
+        public virtual userData personRecognizing { get; set; }
         public Guid recognized { get; set; }
+        [ForeignKey("recognized")]
+        public virtual userData personRecognized { get; set; }
         [Display(Name = "Date recognition given")]
         public DateTime recognitionDate { get; set; }
         [Display(Name = "Phone number of person giving recognition")]

@@ -15,10 +15,11 @@
             @Html.DisplayNameFor(model => model.award)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.recognizor)
+            Person giving recognition
+        
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.recognized)
+            Person receiving recognition
         </th>
         <th>
             @Html.DisplayNameFor(model => model.recognitionDate)
@@ -41,10 +42,10 @@
             @Html.DisplayFor(modelItem => item.award)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.recognizor)
+            @Html.DisplayFor(modelItem => item.personRecognizing.fullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.recognized)
+            @Html.DisplayFor(modelItem => item.personRecognized.fullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.recognitionDate)
