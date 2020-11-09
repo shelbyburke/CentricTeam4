@@ -33,6 +33,10 @@ namespace CentricTeam4.Controllers
             {
                 return HttpNotFound();
             }
+            var recognizor = db.userData.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
+            ViewBag.recognizor = new SelectList(recognizor, "ID", "fullName");
+
+            ViewBag.recognized = new SelectList(recognizor, "ID", "fullName");
             return View(testCoreValues);
         }
 
@@ -79,6 +83,10 @@ namespace CentricTeam4.Controllers
             {
                 return HttpNotFound();
             }
+                var recognizor = db.userData.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
+                ViewBag.recognizor = new SelectList(recognizor, "ID", "fullName");
+
+                ViewBag.recognized = new SelectList(recognizor, "ID", "fullName");
             return View(testCoreValues);
         }
 
@@ -95,6 +103,12 @@ namespace CentricTeam4.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            var recognizor = db.userData.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
+            ViewBag.recognizor = new SelectList(recognizor, "ID", "fullName");
+
+            ViewBag.recognized = new SelectList(recognizor, "ID", "fullName");
+
+
             return View(testCoreValues);
         }
 
