@@ -242,18 +242,16 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\CoreValues.cshtml" />
-    <Content Include="Views\userData\Create.cshtml" />
-    <Content Include="Views\userData\Delete.cshtml" />
-    <Content Include="Views\userData\Details.cshtml" />
-    <Content Include="Views\userData\Edit.cshtml" />
-    <Content Include="Views\userData\Index.cshtml" />
-    <Content Include="Views\userData\DuplicateUser.cshtml" />
-    <Content Include="Views\userData\NotAuthenticated.cshtml" />
     <Content Include="Views\TestCoreValues\Create.cshtml" />
     <Content Include="Views\TestCoreValues\Delete.cshtml" />
     <Content Include="Views\TestCoreValues\Details.cshtml" />
     <Content Include="Views\TestCoreValues\Edit.cshtml" />
     <Content Include="Views\TestCoreValues\Index.cshtml" />
+    <Content Include="Views\userData\Create.cshtml" />
+    <Content Include="Views\userData\Delete.cshtml" />
+    <Content Include="Views\userData\Details.cshtml" />
+    <Content Include="Views\userData\Edit.cshtml" />
+    <Content Include="Views\userData\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\NewFolder1\" />
