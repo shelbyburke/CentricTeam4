@@ -75,8 +75,6 @@ namespace CentricTeam4.Models
        
         }
 
-        public ICollection<Nominations> Nominations { get; set; }
-
 
     }
 }

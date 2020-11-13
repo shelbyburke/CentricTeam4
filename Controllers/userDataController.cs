@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CentricTeam4.DAL;
 using CentricTeam4.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CentricTeam4.Controllers
 {
@@ -15,14 +16,50 @@ namespace CentricTeam4.Controllers
     {
         private MIS4200Context db = new MIS4200Context();
 
-        // GET: userDatas
-        public ActionResult Index()
+        // GET: userData
+        public ActionResult Index(string searchString)
         {
-            var NominatedUsers = db.userData.Include(U => U.Nominations);
-            return View(NominatedUsers);
+
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    var testusers = from u in db.userData select u;
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        testusers = testusers.Where(u =>
+                        u.lastName.Contains(searchString)
+                            || u.firstName.Contains(searchString));
+                        // if here, users were found so view them
+                        return View(testusers.ToList());
+                    }
+                    return View(db.userData.ToList());
+                }
+                else
+                {
+                    return View("NotAuthenticated");
+                }
+
+            }
+
+            //{
+            //    {
+            //        var testusers = from u in db.userData select u;
+            //        if (!String.IsNullOrEmpty(searchString))
+            //        {
+            //            testusers = testusers.Where(u =>
+            //            u.lastName.Contains(searchString)
+            //                || u.firstName.Contains(searchString));
+            //            // if here, users were found so view them
+            //            return View(testusers.ToList());
+            //        }
+            //        return View(db.userData.ToList());
+
+            //    }
+            //}
+
         }
 
-        // GET: userDatas/Details/5
+        // GET: userData/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -37,13 +74,14 @@ namespace CentricTeam4.Controllers
             return View(userData);
         }
 
-        // GET: userDatas/Create
+        // GET: userData/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: userDatas/Create
+        // POST: userData/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -52,16 +90,27 @@ namespace CentricTeam4.Controllers
         {
             if (ModelState.IsValid)
             {
-                userData.ID = Guid.NewGuid();
+                //    userData.ID = Guid.NewGuid(); // original new GUID
+                Guid memberID; // created a variable to hold the GUID
+                Guid.TryParse(User.Identity.GetUserId(), out memberID);
+                userData.ID = memberID;
                 db.userData.Add(userData);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // db.SaveChanges will throw an Exception if the user already exists
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    return View("DuplicateUser");
+                }
             }
 
             return View(userData);
         }
 
-        // GET: userDatas/Edit/5
+        // GET: userData/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -73,10 +122,19 @@ namespace CentricTeam4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userData);
+            Guid memberID;
+            Guid.TryParse(User.Identity.GetUserId(), out memberID);
+            if (userData.ID == memberID)
+            {
+                return View(userData);
+            }
+            else
+            {
+                return View("NotAuthenticated");
+            }
         }
 
-        // POST: userDatas/Edit/5
+        // POST: userData/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -92,7 +150,7 @@ namespace CentricTeam4.Controllers
             return View(userData);
         }
 
-        // GET: userDatas/Delete/5
+        // GET: userData/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -107,7 +165,7 @@ namespace CentricTeam4.Controllers
             return View(userData);
         }
 
-        // POST: userDatas/Delete/5
+        // POST: userData/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
