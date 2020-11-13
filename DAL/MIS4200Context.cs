@@ -14,6 +14,7 @@ namespace CentricTeam4.DAL
 
         }
         public DbSet<userData> userData { get; set; }
+        public DbSet<Nominations> Nominations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) { modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.OneToManyCascadeDeleteConvention>(); }
 
