@@ -9,6 +9,8 @@ namespace CentricTeam4.Migrations.MISContext
     {
         public Configuration()
         {
+            AutomaticMigrationDataLossAllowed = true;
+
             AutomaticMigrationsEnabled = true;
             MigrationsDirectory = @"Migrations\MISContext";
         }
