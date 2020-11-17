@@ -18,7 +18,7 @@ namespace CentricTeam4.Controllers
 
         // GET: TestCoreValues
         public ActionResult Index()
-        {
+        { 
             return View(db.TestCoreValues.ToList());
         }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -74,7 +75,11 @@ namespace CentricTeam4.Models
             Tampa = 13,
        
         }
+        [ForeignKey("recognizor")]
+        public ICollection<TestCoreValues> recognizor { get; set; }
 
+        [ForeignKey("recognized")]
+        public ICollection<TestCoreValues> recognized { get; set; }
 
     }
 }

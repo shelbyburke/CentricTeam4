@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CentricTeam4.Models.TestCoreValues>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.personRecognized.fullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.personRecognizing.fullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.award)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recognitionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.personRecognized.fullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.personRecognizing.fullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.award)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recognitionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+    </tr>
+}
+
+</table>
