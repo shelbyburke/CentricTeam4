@@ -96,9 +96,19 @@
             <td colspan="4">
                 @{
                     var recognizedID = item.ID;
-                    var coreValueList = item.recognized.Where(c => c.recognized == recognizedID).ToList();
+                    try
+                    {
+                        var coreValueList = item.recognized.Where(c => c.recognized == recognizedID).ToList();
+                        @Html.Partial("_CoreValuesView", coreValueList)
+                    }
+                    catch
+                    {
+                        //if here the previous statement failed, so skip to the end of the loop
+                        continue;
+                    }
+
                 }
-                @Html.Partial("_CoreValuesView", coreValueList)
+
             </td>
         </tr>
     }

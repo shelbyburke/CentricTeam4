@@ -24,6 +24,7 @@ namespace CentricTeam4.Controllers
                 {
                     // var testusers = from u in db.userData select u;
                     var testusers = db.userData.Include(T => T.recognized);
+
                     if (!String.IsNullOrEmpty(searchString))
                     {
                         testusers = testusers.Where(u =>
@@ -31,7 +32,9 @@ namespace CentricTeam4.Controllers
                         // if here, users were found so view them	
                         return View(testusers.ToList());
                     }
-                    return View(db.userData.ToList());
+
+                    //return View(db.userData.ToList());  //this is the original statement - returning userDate without the Include
+                    return View(testusers.ToList());
                 }
                 else
                 {
