@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>User Information Index</h2>
 
 <div class="form-horizontal">
         <div class="form-group">
@@ -92,7 +92,7 @@
                 @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
             </td>
         </tr>
-        <tr>
+        @*<tr>
             <td colspan="4">
                 @{
                     var recognizedID = item.ID;
@@ -103,14 +103,14 @@
                     }
                     catch
                     {
-                        //if here the previous statement failed, so skip to the end of the loop
-                        continue;
+                        if here the previous statement failed, so skip to the end of the loop
+                            continue;
                     }
 
                 }
 
             </td>
-        </tr>
+        </tr>*@
     }
 
 </table>

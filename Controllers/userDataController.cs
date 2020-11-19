@@ -44,6 +44,23 @@ namespace CentricTeam4.Controllers
 
         }
 
+        public ActionResult Details(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            userData userData = db.userData.Find(id);
+            if (userData == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userData);
+        }
+
+
+
+
         // GET: userData/Create
         [Authorize]
         public ActionResult Create()

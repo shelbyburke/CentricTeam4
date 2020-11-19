@@ -4,6 +4,8 @@
     ViewBag.Title = "Details";
 }
 
+@using CentricTeam4.DAL;
+
 <h2>Details</h2>
 
 <div>
@@ -84,6 +86,30 @@
 
     </dl>
 </div>
+
+@{
+
+    var recognizedID = Model.ID;
+
+    try
+    {
+
+        MIS4200Context db = new MIS4200Context();
+
+
+
+      //  var coreValueList = db.TestCoreValues.Include(T=>T.)
+            //.Where(U => U.recognized == recognizedID);
+      //  @Html.Partial("_CoreValuesView", coreValueList)
+    }
+    catch
+    {
+        //if here the previous statement failed, so skip to the end of the loop
+    }
+
+}
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
