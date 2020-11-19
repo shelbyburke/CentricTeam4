@@ -96,11 +96,11 @@
 
         MIS4200Context db = new MIS4200Context();
 
+        var coreValueList = db.TestCoreValues.Where(u=>u.recognized==recognizedID);
 
-
-      //  var coreValueList = db.TestCoreValues.Include(T=>T.)
-            //.Where(U => U.recognized == recognizedID);
-      //  @Html.Partial("_CoreValuesView", coreValueList)
+        //  var coreValueList = db.TestCoreValues.Include(T=>T.)
+        //.Where(U => U.recognized == recognizedID);
+      @Html.Partial("_CoreValuesView", coreValueList.ToList());
     }
     catch
     {
