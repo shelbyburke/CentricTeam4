@@ -91,6 +91,21 @@ namespace CentricTeam4.Controllers
             {
                 db.TestCoreValues.Add(testCoreValues);
                 db.SaveChanges();
+
+                {
+                    string notification = "Nomination for a core value award sent to :<br/>";
+                    var personRecognized = db.userData.Find(testCoreValues.ID);
+                    var fullName = testCoreValues.personRecognized;
+                    var recognition = testCoreValues.award;
+                    var date = testCoreValues.recognitionDate;
+                    var msg = "Hi " + fullName + ",\n\nWe wanted to inform you that you have been recognized for " + recognition;
+                    msg += " on " + date.ToShortDateString() + ".";
+                    msg += "\n\nCongratulations on being nominated for an award.";
+                    msg += "\n\nSincerely\nCentric Consulting Team";
+                    notification += "<br/>" + fullName + " has been nominated for " + recognition + " on " + date.ToShortDateString() + ".";
+
+
+                }
                 return RedirectToAction("Index");
             }
             var recognizor = db.userData.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
