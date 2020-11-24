@@ -98,7 +98,7 @@ namespace CentricTeam4.Controllers
                     var personRecognized = db.userData.Find(testCoreValues.ID);
                     var fullName = testCoreValues.personRecognized;
                     var recognition = testCoreValues.award;
-                    var email = userData.email;
+                    var email = personRecognized.Email;
                     var date = testCoreValues.recognitionDate;
                     var msg = "Hi " + fullName + ",\n\nWe wanted to inform you that you have been recognized for " + recognition;
                     msg += " on " + date.ToShortDateString() + ".";
