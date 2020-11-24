@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
@@ -97,6 +98,7 @@ namespace CentricTeam4.Controllers
                     var personRecognized = db.userData.Find(testCoreValues.ID);
                     var fullName = testCoreValues.personRecognized;
                     var recognition = testCoreValues.award;
+                    var email = userData.email;
                     var date = testCoreValues.recognitionDate;
                     var msg = "Hi " + fullName + ",\n\nWe wanted to inform you that you have been recognized for " + recognition;
                     msg += " on " + date.ToShortDateString() + ".";
@@ -104,7 +106,30 @@ namespace CentricTeam4.Controllers
                     msg += "\n\nSincerely\nCentric Consulting Team";
                     notification += "<br/>" + fullName + " has been nominated for " + recognition + " on " + date.ToShortDateString() + ".";
 
-
+                    MailMessage myMessage = new MailMessage();
+                    MailAddress from = new MailAddress("shelbyburke05@gmail.com", "SysAdmin");
+                    myMessage.From = from;
+                    myMessage.To.Add(email);
+                    myMessage.Subject = "Congratulations on being nominated!";
+                    myMessage.Body = msg;
+                    try
+                    {
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new System.Net.NetworkCredential("GmailUserAcnt", "Password");
+                        smtp.EnableSsl = true;
+                        smtp.Send(myMessage);
+                        TempData["mailError"] = "";
+                    }
+                    catch  (Exception ex)
+                    {
+                        // this captures an exception and allows you to display the message in the View
+                        TempData["mailError"] = ex.Message;
+                        return View("mailError");
+                    }
+                    ViewBag.notification = notification;
                 }
                 return RedirectToAction("Index");
             }
