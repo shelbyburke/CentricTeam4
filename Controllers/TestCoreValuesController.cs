@@ -107,7 +107,7 @@ namespace CentricTeam4.Controllers
                     notification += "<br/>" + fullName + " has been nominated for " + recognition + " on " + date.ToShortDateString() + ".";
 
                     MailMessage myMessage = new MailMessage();
-                    MailAddress from = new MailAddress("shelbyburke05@gmail.com", "SysAdmin");
+                    MailAddress from = new MailAddress("CentricTeam4@gmail.com", "SysAdmin");
                     myMessage.From = from;
                     myMessage.To.Add(email);
                     myMessage.Subject = "Congratulations on being nominated!";
@@ -118,7 +118,7 @@ namespace CentricTeam4.Controllers
                         smtp.Host = "smtp.gmail.com";
                         smtp.Port = 587;
                         smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new System.Net.NetworkCredential("GmailUserAcnt", "Password");
+                        smtp.Credentials = new System.Net.NetworkCredential("CentricTeam4gmail.com", "CentricTe@m4!");
                         smtp.EnableSsl = true;
                         smtp.Send(myMessage);
                         TempData["mailError"] = "";
