@@ -47,6 +47,7 @@ namespace CentricTeam4.Controllers
             ViewBag.rec = recList;
 
             var totalCount = recList.Count(); //counts all the recognitions for that person
+
             var rec1Cnt = recList.Where(r => r.award == TestCoreValues.CoreValue.Excellence).Count();
             //counts all the excellance recongitions
             //notice how the Enum values are references, class.enum.value
@@ -95,7 +96,7 @@ namespace CentricTeam4.Controllers
 
                 {
                     string notification = "Nomination for a core value award sent to :<br/>";
-                    var personRecognized = db.userData.Find(testCoreValues.ID);
+                    var personRecognized = db.userData.Find(testCoreValues.recognized);
                     var fullName = testCoreValues.personRecognized;
                     var recognition = testCoreValues.award;
                     var email = personRecognized.Email;
@@ -118,7 +119,7 @@ namespace CentricTeam4.Controllers
                         smtp.Host = "smtp.gmail.com";
                         smtp.Port = 587;
                         smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new System.Net.NetworkCredential("CentricTeam4gmail.com", "CentricTe@m4!");
+                        smtp.Credentials = new System.Net.NetworkCredential("CentricTeam4@gmail.com", "CentricTe@m4!");
                         smtp.EnableSsl = true;
                         smtp.Send(myMessage);
                         TempData["mailError"] = "";

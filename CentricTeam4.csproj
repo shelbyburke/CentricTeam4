@@ -256,6 +256,7 @@
     <Content Include="Views\userData\NotAuthenticated.cshtml" />
     <Content Include="Views\userData\_CoreValuesView.cshtml" />
     <Content Include="Views\userData\Details.cshtml" />
+    <Content Include="Views\TestCoreValues\mailError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\NewFolder1\" />

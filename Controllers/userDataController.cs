@@ -43,6 +43,7 @@ namespace CentricTeam4.Controllers
             }
 
         }
+     
 
         public ActionResult Details(Guid? id)
         {
@@ -166,6 +167,8 @@ namespace CentricTeam4.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+       
 
         protected override void Dispose(bool disposing)
         {

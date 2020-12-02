@@ -93,14 +93,20 @@
 
     try
     {
+        
 
         MIS4200Context db = new MIS4200Context();
 
         var coreValueList = db.TestCoreValues.Where(u=>u.recognized==recognizedID);
+        var totalCnt = coreValueList.Count();
 
         //  var coreValueList = db.TestCoreValues.Include(T=>T.)
         //.Where(U => U.recognized == recognizedID);
       @Html.Partial("_CoreValuesView", coreValueList.ToList());
+
+        ViewBag.total = totalCnt;
+        var total = ViewBag.total;
+       <h2>Total recognitions received =@total</h2>
     }
     catch
     {
