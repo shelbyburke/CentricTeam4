@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using CentricTeam4.DAL;
 using CentricTeam4.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CentricTeam4.Controllers
 {
@@ -38,8 +39,10 @@ namespace CentricTeam4.Controllers
             var recognizor = db.userData.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
             ViewBag.recognizor = new SelectList(recognizor, "ID", "fullName");
 
-            ViewBag.recognized = new SelectList(recognizor, "ID", "fullName");
-
+            string recId = User.Identity.GetUserId();
+            SelectList recognized = new SelectList(db.userData, "ID", "fullName");
+            recognized = new SelectList(recognized.Where(x => x.Value != recId).ToList(), "Value", "Text");
+            ViewBag.recognized = recognized;
 
 
             var rec = db.TestCoreValues.Where(r => r.ID == id);
@@ -157,6 +160,9 @@ namespace CentricTeam4.Controllers
                 ViewBag.recognizor = new SelectList(recognizor, "ID", "fullName");
 
                 ViewBag.recognized = new SelectList(recognizor, "ID", "fullName");
+
+
+
             return View(testCoreValues);
         }
 
