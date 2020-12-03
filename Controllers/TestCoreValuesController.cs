@@ -161,10 +161,27 @@ namespace CentricTeam4.Controllers
 
                 ViewBag.recognized = new SelectList(recognizor, "ID", "fullName");
 
-
-
-            return View(testCoreValues);
-        }
+ //           if (id == null)
+ //           {
+ //               return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+ //           }
+ ////           User user = db.userData.Find(id);
+ //           if (user == null)
+ //           {
+ //               return HttpNotFound();
+ //           }
+ //           Guid userId;
+ //           Guid.TryParse(User.Identity.GetUserId(), out userId);
+ //           if (user.ID == userId)
+ //           {
+ //               return View(user);
+ //           }
+ //           else
+ //           {
+ //               return View("Not Authenicated");
+ //           }
+          return View(testCoreValues);
+           }
 
         // POST: TestCoreValues/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
