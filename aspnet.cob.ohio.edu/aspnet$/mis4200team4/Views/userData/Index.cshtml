@@ -1,0 +1,116 @@
+﻿@model IEnumerable<CentricTeam4.Models.userData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>User Information Index</h2>
+
+<div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-9">
+                @using (Html.BeginForm("Index", "userData", FormMethod.Get))
+                 {
+                    <p>
+                        Search for users by first or last name:
+                        @Html.TextBox("searchString")
+                        <input type="submit" value="Search" />
+                    </p>
+                 }
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Create New", "Create")
+            </div>
+        </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusinessUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hireDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bio)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bio)
+            </td>
+            <td>
+                @Html.ActionLink(" Edit", "Edit", new { id = item.ID}, new { @class = "glyphicon glyphicon-pencil" })
+                @Html.ActionLink(" Details", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list-alt" }) |
+                @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
+            </td>
+        </tr>
+        @*<tr>
+            <td colspan="4">
+                @{
+                    var recognizedID = item.ID;
+                    try
+                    {
+                        var coreValueList = item.recognized.Where(c => c.recognized == recognizedID).ToList();
+                        @Html.Partial("_CoreValuesView", coreValueList)
+                    }
+                    catch
+                    {
+                        if here the previous statement failed, so skip to the end of the loop
+                            continue;
+                    }
+
+                }
+
+            </td>
+        </tr>*@
+    }
+
+</table>

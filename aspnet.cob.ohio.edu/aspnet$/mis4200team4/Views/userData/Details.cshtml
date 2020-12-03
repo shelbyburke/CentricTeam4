@@ -1,0 +1,122 @@
+﻿@model CentricTeam4.Models.userData
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@using CentricTeam4.DAL;
+
+<h2>Details</h2>
+
+<div>
+    <h4>userData</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bio)
+        </dd>
+
+    </dl>
+</div>
+
+@{
+
+    var recognizedID = Model.ID;
+
+    try
+    {
+        
+
+        MIS4200Context db = new MIS4200Context();
+
+        var coreValueList = db.TestCoreValues.Where(u=>u.recognized==recognizedID);
+        var totalCnt = coreValueList.Count();
+
+        //  var coreValueList = db.TestCoreValues.Include(T=>T.)
+        //.Where(U => U.recognized == recognizedID);
+      @Html.Partial("_CoreValuesView", coreValueList.ToList());
+
+        ViewBag.total = totalCnt;
+        var total = ViewBag.total;
+       <h2>Total recognitions received =@total</h2>
+    }
+    catch
+    {
+        //if here the previous statement failed, so skip to the end of the loop
+    }
+
+}
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
