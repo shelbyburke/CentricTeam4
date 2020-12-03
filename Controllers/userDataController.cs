@@ -155,7 +155,17 @@ namespace CentricTeam4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userData);
+            Guid memberID;
+            Guid.TryParse(User.Identity.GetUserId(), out memberID);
+            if (userData.ID == memberID)
+            {
+                db.userData.Remove(userData);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("NotAuthenticated");
+            }
         }
 
         // POST: userData/Delete/5

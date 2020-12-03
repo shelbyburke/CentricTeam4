@@ -94,6 +94,10 @@ namespace CentricTeam4.Controllers
         {
             if (ModelState.IsValid)
             {
+                Guid memberID; // created a variable to hold GUID
+                Guid.TryParse(User.Identity.GetUserId(), out memberID);
+                testCoreValues.recognizor = memberID;
+
                 db.TestCoreValues.Add(testCoreValues);
                 db.SaveChanges();
 
@@ -157,30 +161,20 @@ namespace CentricTeam4.Controllers
                 return HttpNotFound();
             }
                 var recognizor = db.userData.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
-                ViewBag.recognizor = new SelectList(recognizor, "ID", "fullName");
 
                 ViewBag.recognized = new SelectList(recognizor, "ID", "fullName");
 
- //           if (id == null)
- //           {
- //               return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
- //           }
- ////           User user = db.userData.Find(id);
- //           if (user == null)
- //           {
- //               return HttpNotFound();
- //           }
- //           Guid userId;
- //           Guid.TryParse(User.Identity.GetUserId(), out userId);
- //           if (user.ID == userId)
- //           {
- //               return View(user);
- //           }
- //           else
- //           {
- //               return View("Not Authenicated");
- //           }
-          return View(testCoreValues);
+            Guid userId;
+            Guid.TryParse(User.Identity.GetUserId(), out userId);
+
+            if (testCoreValues.recognizor == userId)
+            {
+                return View(testCoreValues);
+            }
+            else
+            {
+                return View("NotAuthenticated");
+            }
            }
 
         // POST: TestCoreValues/Edit/5
@@ -192,6 +186,9 @@ namespace CentricTeam4.Controllers
         {
             if (ModelState.IsValid)
             {
+                Guid memberID; // created a variable to hold GUID
+                Guid.TryParse(User.Identity.GetUserId(), out memberID);
+                testCoreValues.recognizor = memberID;
                 db.Entry(testCoreValues).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

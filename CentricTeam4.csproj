@@ -265,6 +265,7 @@
     <Content Include="Views\Leaderboard\Details.cshtml" />
     <Content Include="Views\Leaderboard\Edit.cshtml" />
     <Content Include="Views\Leaderboard\Index.cshtml" />
+    <Content Include="Views\TestCoreValues\NotAuthenticated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\NewFolder1\" />
