@@ -214,7 +214,17 @@ namespace CentricTeam4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(testCoreValues);
+            Guid userId;
+            Guid.TryParse(User.Identity.GetUserId(), out userId);
+
+            if (testCoreValues.recognizor == userId)
+            {
+                return View(testCoreValues);
+            }
+            else
+            {
+                return View("NotAuthenticated");
+            }
         }
 
         // POST: TestCoreValues/Delete/5
