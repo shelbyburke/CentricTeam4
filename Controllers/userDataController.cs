@@ -57,9 +57,38 @@ namespace CentricTeam4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userData);
-        }
+            var rec = db.TestCoreValues.Where(r => r.recognized == id);
+            var overallCount = db.TestCoreValues.Count();
+            var recList = rec.ToList();
+            ViewBag.rec = recList;
 
+            var totalCnt = recList.Count();
+
+            var rec1Cnt = recList.Where(r => r.award == TestCoreValues.CoreValue.Excellence).Count();
+            var rec2Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Integrity);
+            var rec3Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Stewardship);
+            var rec4Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Culture);
+            var rec5Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Commitment);
+            var rec6Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Innovation);
+            var rec7Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Balance);
+            //copy the values into the ViewBag
+            ViewBag.overallCount = overallCount;
+            ViewBag.total = totalCnt;
+            ViewBag.Excellance = rec1Cnt;
+            ViewBag.Integrity = rec2Cnt;
+            ViewBag.Stewardship = rec3Cnt;
+            ViewBag.Culture = rec4Cnt;
+            ViewBag.Commitment = rec5Cnt;
+            ViewBag.Innovation = rec6Cnt;
+            ViewBag.Balance = rec7Cnt;
+
+
+            return View(userData);
+
+            
+        }
+        
+     
 
 
 

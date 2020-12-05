@@ -6,10 +6,10 @@
 
 @using CentricTeam4.DAL;
 
-<h2>Details</h2>
+<h2>User Details</h2>
 
 <div>
-    <h4>userData</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -91,27 +91,28 @@
 
     var recognizedID = Model.ID;
 
-    try
-    {
-        
+    var overallCount = ViewBag.overallCount;
+    var total = ViewBag.total;
+    var excellence = ViewBag.Excellance;
+    var integrity = ViewBag.Integrity;
+    var stewardship = ViewBag.Stewardship;
+    var culture = ViewBag.Culture;
+    var commitment = ViewBag.Commitment;
+    var innovation = ViewBag.Innovation;
+    var balance = ViewBag.Balance;
+    <h4> Leaderboard: </h4>
 
-        MIS4200Context db = new MIS4200Context();
+    <h4>Total company recognitions = @overallCount</h4>
+    <h4>Total user recognitions = @total</h4>
+    <h4>Excellence awards = @excellence</h4>
+    <h4>Integrity awards = @integrity</h4>
+    <h4>Stewardship awards = @stewardship</h4>
+    <h4>Culture awards = @culture</h4>
+    <h4>Commitment awards = @commitment</h4>
+    <h4>Innovation awards = @innovation</h4>
+    <h4>Balance awards = @balance</h4>
 
-        var coreValueList = db.TestCoreValues.Where(u=>u.recognized==recognizedID);
-        var totalCnt = coreValueList.Count();
 
-        //  var coreValueList = db.TestCoreValues.Include(T=>T.)
-        //.Where(U => U.recognized == recognizedID);
-      @Html.Partial("_CoreValuesView", coreValueList.ToList());
-
-        ViewBag.total = totalCnt;
-        var total = ViewBag.total;
-       <h2>Total recognitions received =@total</h2>
-    }
-    catch
-    {
-        //if here the previous statement failed, so skip to the end of the loop
-    }
 
 }
 

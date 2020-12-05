@@ -45,34 +45,35 @@ namespace CentricTeam4.Controllers
             ViewBag.recognized = recognized;
 
 
-            var rec = db.TestCoreValues.Where(r => r.ID == id);
-            var recList = rec.ToList();
-            ViewBag.rec = recList;
+            /*         var rec = db.TestCoreValues.Where(r => r.ID == id);
+                     var recList = rec.ToList();
+                     ViewBag.rec = recList;
 
-            var totalCount = recList.Count(); //counts all the recognitions for that person
+                     var totalCount = recList.Count(); //counts all the recognitions for that person
 
-            var rec1Cnt = recList.Where(r => r.award == TestCoreValues.CoreValue.Excellence).Count();
-            //counts all the excellance recongitions
-            //notice how the Enum values are references, class.enum.value
-            //the next two lines show another way to do the same counting
-            var rec2Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Integrity);
-            var rec3Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Stewardship);
-            var rec4Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Culture);
-            var rec5Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Commitment);
-            var rec6Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Innovation);
-            var rec7Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Balance);
-            //copy the values into the ViewBag
-            ViewBag.total = totalCount;
-            ViewBag.Excellance = rec1Cnt;
-            ViewBag.Integrity = rec2Cnt;
-            ViewBag.Stewardship = rec3Cnt;
-            ViewBag.Culture = rec4Cnt;
-            ViewBag.Commitment = rec5Cnt;
-            ViewBag.Innovation = rec6Cnt;
-            ViewBag.Balance = rec7Cnt;
-            
+                     var rec1Cnt = recList.Where(r => r.award == TestCoreValues.CoreValue.Excellence).Count();
+                     //counts all the excellance recongitions
+                     //notice how the Enum values are references, class.enum.value
+                     //the next two lines show another way to do the same counting
+                     var rec2Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Integrity);
+                     var rec3Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Stewardship);
+                     var rec4Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Culture);
+                     var rec5Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Commitment);
+                     var rec6Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Innovation);
+                     var rec7Cnt = recList.Count(r => r.award == TestCoreValues.CoreValue.Balance);
+                     //copy the values into the ViewBag
+                     ViewBag.total = totalCount;
+                     ViewBag.Excellance = rec1Cnt;
+                     ViewBag.Integrity = rec2Cnt;
+                     ViewBag.Stewardship = rec3Cnt;
+                     ViewBag.Culture = rec4Cnt;
+                     ViewBag.Commitment = rec5Cnt;
+                     ViewBag.Innovation = rec6Cnt;
+                     ViewBag.Balance = rec7Cnt;
+                 */
             return View(testCoreValues);
         }
+
 
         // GET: TestCoreValues/Create
         [Authorize]

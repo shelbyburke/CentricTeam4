@@ -169,7 +169,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LeaderboardController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TestCoreValuesController.cs" />
     <Compile Include="Controllers\userDataController.cs" />
@@ -258,8 +257,6 @@
     <Content Include="Views\userData\_CoreValuesView.cshtml" />
     <Content Include="Views\userData\Details.cshtml" />
     <Content Include="Views\TestCoreValues\mailError.cshtml" />
-    <Content Include="Views\userData\Leaderboard.cshtml" />
-    <Content Include="Views\Home\Leaderboard.cshtml" />
     <Content Include="Views\Leaderboard\Create.cshtml" />
     <Content Include="Views\Leaderboard\Delete.cshtml" />
     <Content Include="Views\Leaderboard\Details.cshtml" />
