@@ -82,7 +82,10 @@ namespace CentricTeam4.Controllers
             var recognizor = db.userData.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
             ViewBag.recognizor = new SelectList(recognizor, "ID", "fullName");
 
-            ViewBag.recognized = new SelectList(recognizor, "ID", "fullName");
+            var recognized = new SelectList(recognizor, "ID", "fullName");
+            var empID = User.Identity.GetUserId();
+            ViewBag.recognized = new SelectList(recognized.Where(x => x.Value != empID).ToList(), "Value", "Text");
+
             return View();
         }
 
